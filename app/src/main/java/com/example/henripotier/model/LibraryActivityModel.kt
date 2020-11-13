@@ -5,13 +5,13 @@ import com.example.henripotier.contract.LibraryContractInterface.Model
 
 class LibraryActivityModel: Model {
 
-    private var bookList : List<BookModel> = emptyList()
+    private var bookList : List<Book> = emptyList()
 
-    override fun getBookList(): List<BookModel> {
+    override fun getBookList(): List<Book> {
         return bookList
     }
 
-    override fun setBookList(bookList : List<BookModel>) {
+    override fun setBookList(bookList : List<Book>) {
         this.bookList = bookList
     }
 

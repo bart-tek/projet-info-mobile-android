@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.henripotier.R
-import com.example.henripotier.model.BookModel
+import com.example.henripotier.model.Book
 import com.example.henripotier.view.BookItemView
 
-class BookAdapter(context: Context, private val books: List<BookModel>) : BaseAdapter() {
+class BookAdapter(context: Context, private val books: List<Book>) : BaseAdapter() {
 
     private var inflater = LayoutInflater.from(context)
 
@@ -17,7 +17,7 @@ class BookAdapter(context: Context, private val books: List<BookModel>) : BaseAd
         return books.size
     }
 
-    override fun getItem(position: Int): BookModel {
+    override fun getItem(position: Int): Book {
         return books[position]
     }
 

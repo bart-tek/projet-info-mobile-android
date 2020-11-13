@@ -1,8 +1,10 @@
 package com.example.henripotier.presenter
 
 import com.example.henripotier.api.LibraryService
+import com.example.henripotier.api.RetrofitBuilder
+import com.example.henripotier.api.RetrofitBuilder.apiService
 import com.example.henripotier.contract.LibraryContractInterface.*
-import com.example.henripotier.model.BookModel
+import com.example.henripotier.model.Book
 import com.example.henripotier.model.LibraryActivityModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,7 +12,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
-import kotlin.math.log
 
 class LibraryActivityPresenter(_view: View): Presenter {
 
@@ -26,24 +27,19 @@ class LibraryActivityPresenter(_view: View): Presenter {
 
         Timber.plant(Timber.DebugTree())
 
-        val retrofit = Retrofit.Builder().baseUrl("http://henri-potier.xebia.fr/").addConverterFactory(
-            GsonConverterFactory.create()).build()
+        val booksRequest = apiService.listBooks()
 
-        val service = retrofit.create(LibraryService::class.java)
-
-        var booksRequest = service.listBooks()
-
-        booksRequest.enqueue(object : Callback<Array<BookModel>> {
-            override fun onResponse(call: Call<Array<BookModel>>, response: Response<Array<BookModel>>) {
+        booksRequest.enqueue(object : Callback<List<Book>> {
+            override fun onResponse(call: Call<List<Book>>, response: Response<List<Book>>) {
                 val allBooks = response.body()
                 if (allBooks != null) {
-                    model.setBookList(allBooks.asList())
+                    model.setBookList(allBooks)
                 }
                 view.updateViewData()
             }
 
-            override fun onFailure(call: Call<Array<BookModel>>, t: Throwable) {
-                Timber.e("Error")
+            override fun onFailure(call: Call<List<Book>>, t: Throwable) {
+                Timber.e(t)
             }
         })
     }

@@ -1,6 +1,6 @@
 package com.example.henripotier.contract
 
-import com.example.henripotier.model.BookModel
+import com.example.henripotier.model.Book
 
 interface LibraryContractInterface {
 
@@ -10,12 +10,12 @@ interface LibraryContractInterface {
     }
 
     interface Presenter {
-        fun getBookList() : List<BookModel>
+        fun getBookList() : List<Book>
     }
 
     interface Model {
-        fun getBookList() : List<BookModel>
-        fun setBookList(booklist : List<BookModel>)
+        fun getBookList() : List<Book>
+        fun setBookList(booklist : List<Book>)
     }
 
 }

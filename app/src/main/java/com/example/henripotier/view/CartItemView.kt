@@ -1,14 +1,11 @@
 package com.example.henripotier.view
 
 import android.content.Context
-import android.provider.Settings.Global.getString
 import android.util.AttributeSet
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.henripotier.R
 import com.example.henripotier.model.Book
-import com.squareup.picasso.Picasso
 
 
 class CartItemView @JvmOverloads constructor(
@@ -19,19 +16,22 @@ class CartItemView @JvmOverloads constructor(
         LinearLayout(context, attrs, defStyleAttr) {
 
     private lateinit var nameTextView : TextView
+    private lateinit var totalTextView : TextView
+    private lateinit var quantityTextView : TextView
     private lateinit var priceTextView : TextView
-    private lateinit var amountTextView : TextView
 
     override fun onFinishInflate() {
         super.onFinishInflate()
         nameTextView = findViewById(R.id.itemName)
-        priceTextView = findViewById(R.id.itemTotal)
-        amountTextView = findViewById(R.id.itemAmount)
+        totalTextView = findViewById(R.id.itemTotal)
+        quantityTextView = findViewById(R.id.itemQuantity)
+        priceTextView = findViewById(R.id.itemPrice)
     }
 
     fun bindView(book: Book, amount:Int) {
         nameTextView.text = book.title
-        amountTextView.text = "$amount"
-        priceTextView.text = String.format(resources.getString(R.string.bookPrice),  book.price.toInt()*amount)
+        quantityTextView.text = String.format(resources.getString(R.string.cartItemQuantity),  book.price)
+        priceTextView.text = String.format(resources.getString(R.string.cartItemPrice),  book.price)
+        totalTextView.text = String.format(resources.getString(R.string.cartItemTotal),  book.price!!.toInt()*amount)
     }
 }

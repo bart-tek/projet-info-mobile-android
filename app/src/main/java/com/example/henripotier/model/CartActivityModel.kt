@@ -7,7 +7,7 @@ class CartActivityModel : Model {
 
     private var cart: HashMap<Book, Int> = hashMapOf(
        Book("1", "title", "1", "ok", emptyList()) to 1,
-       Book("2", "title2", "1", "ok", emptyList()) to 4
+       Book("2", "title is musch longer and might need two line", "1", "ok", emptyList()) to 4
     )
 
     override fun getCart(): HashMap<Book, Int> {

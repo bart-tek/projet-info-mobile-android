@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isNotEmpty
 import com.example.henripotier.R
 import com.example.henripotier.contract.CartContractInterface
 import com.example.henripotier.presenter.CartActivityPresenter
@@ -37,7 +39,7 @@ class CartActivity : AppCompatActivity(), CartContractInterface.View {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.getItemId()) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 finish()
                 true
@@ -59,5 +61,10 @@ class CartActivity : AppCompatActivity(), CartContractInterface.View {
 
         val totalTextView =findViewById<TextView>(R.id.total)
         totalTextView.text = String.format(resources.getString(R.string.bookPrice), presenter.getTotal())
+
+        if(presenter.getCart().isNotEmpty()){
+            val buyButton = findViewById<Button>(R.id.buyButton)
+            buyButton.isEnabled = true
+        }
     }
 }

@@ -31,7 +31,7 @@ class CartActivityPresenter(_view: View): Presenter {
     override fun getTotal(): Double {
         var total:Double = 0.0
         for ((book, amount) in model.getCart()) {
-           total += book.price.toInt() *amount
+           total += book.price!!.toInt() *amount
         }
         return total
     }

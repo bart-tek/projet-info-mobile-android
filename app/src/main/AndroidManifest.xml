@@ -26,6 +26,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.LibraryActivity" />
         </activity>
+        <activity
+            android:name=".view.BookDetailsActivity"
+            android:label="@string/bookDetails_activity_name" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.LibraryActivity" />
+        </activity>
     </application>
 
 </manifest>

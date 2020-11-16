@@ -15,5 +15,4 @@ class LibraryActivityModel: Model {
         this.bookList = bookList
     }
 
-
 }

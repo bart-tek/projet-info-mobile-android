@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Library</string>
     <string name="cart_activity_name">Cart</string>
+    <string name="bookDetails_activity_name">Details</string>
     <string name="action_cart">Cart</string>
     <string name="cover">Cover</string>
     <string name="bookPrice">%1$s €</string>

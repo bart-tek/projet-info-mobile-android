@@ -22,14 +22,17 @@ class LibraryActivity : AppCompatActivity(), LibraryContractInterface.View {
         setContentView(R.layout.activity_library)
 
         presenter = LibraryActivityPresenter(this)
+        initView()
     }
 
     override fun initView() {
+        val listView = findViewById<ListView>(R.id.bookListView)
+        listView.adapter = BookItemAdapter(this, presenter.getBookList())
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        if (id == R.id.action_favorite) {
+        if (id == R.id.action_cart_from_library) {
             val intent = Intent(this@LibraryActivity, CartActivity::class.java)
             startActivity(intent)
             return true
@@ -44,9 +47,7 @@ class LibraryActivity : AppCompatActivity(), LibraryContractInterface.View {
     }
 
     override fun updateViewData() {
-
         val listView = findViewById<ListView>(R.id.bookListView)
         listView.adapter = BookItemAdapter(this, presenter.getBookList())
-
     }
 }

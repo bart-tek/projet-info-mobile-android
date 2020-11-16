@@ -6,8 +6,8 @@ import com.example.henripotier.contract.CartContractInterface.Model
 class CartActivityModel : Model {
 
     private var cart: HashMap<Book, Int> = hashMapOf(
-       Book("1", "title", "1", "ok", emptyList()) to 1,
-       Book("2", "title is musch longer and might need two line", "1", "ok", emptyList()) to 4
+       Book("1", "title", "1", "ok", ArrayList()) to 1,
+       Book("2", "title is musch longer and might need two line", "1", "ok", ArrayList()) to 4
     )
 
     override fun getCart(): HashMap<Book, Int> {

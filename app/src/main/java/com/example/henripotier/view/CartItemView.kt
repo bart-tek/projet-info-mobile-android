@@ -30,8 +30,10 @@ class CartItemView @JvmOverloads constructor(
 
     fun bindView(book: Book, amount:Int) {
         nameTextView.text = book.title
+
         quantityTextView.text = String.format(resources.getString(R.string.cartItemQuantity),  book.price)
         priceTextView.text = String.format(resources.getString(R.string.cartItemPrice),  book.price)
         totalTextView.text = String.format(resources.getString(R.string.cartItemTotal),  book.price!!.toInt()*amount)
+
     }
 }

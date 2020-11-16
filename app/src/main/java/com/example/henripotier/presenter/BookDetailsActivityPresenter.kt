@@ -5,6 +5,7 @@ import com.example.henripotier.contract.BookDetailsContract
 import com.example.henripotier.model.Book
 import com.example.henripotier.model.BookDetailsActivityModel
 import com.example.henripotier.view.BookDetailsActivity
+import java.lang.StringBuilder
 
 class BookDetailsActivityPresenter(_view: BookDetailsContract.View, intent : Intent): BookDetailsContract.Presenter {
 
@@ -25,7 +26,19 @@ class BookDetailsActivityPresenter(_view: BookDetailsContract.View, intent : Int
 
     override fun getCover(): String = model.getCover()
 
-    override fun getSynopsis(): List<String> = model.getSynopsis()
+    override fun getSynopsis(): String {
+
+        val synopsisAsList = model.getSynopsis()
+        var synopsisBuilder = StringBuilder()
+
+        for (line in synopsisAsList!!) {
+            synopsisBuilder.append(line)
+            synopsisBuilder.append("\n")
+            synopsisBuilder.append("\n")
+        }
+
+        return synopsisBuilder.dropLast(1) .toString()
+    }
 
     override fun getIsbn(): String = model.getIsbn()
 

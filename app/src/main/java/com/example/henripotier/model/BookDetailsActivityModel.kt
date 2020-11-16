@@ -1,6 +1,7 @@
 package com.example.henripotier.model
 
 import com.example.henripotier.contract.BookDetailsContract
+import java.util.ArrayList
 
 class BookDetailsActivityModel: BookDetailsContract.Model {
 
@@ -15,14 +16,14 @@ class BookDetailsActivityModel: BookDetailsContract.Model {
     }
 
     override fun getPrice(): String {
-        return book!!.price?:""
+        return book.price?:""
     }
 
     override fun getCover(): String {
         return book.cover?:""
     }
 
-    override fun getSynopsis(): List<String> {
+    override fun getSynopsis(): ArrayList<String>? {
         return book.synopsis
     }
 

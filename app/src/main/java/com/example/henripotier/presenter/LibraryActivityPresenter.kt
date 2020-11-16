@@ -19,7 +19,6 @@ class LibraryActivityPresenter(_view: View): Presenter {
     private var model: Model = LibraryActivityModel()
 
     init {
-        view.initView()
         initBookList()
     }
 

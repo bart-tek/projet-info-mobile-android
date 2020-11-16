@@ -1,58 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/coverDetails"
-        android:layout_width="340dp"
-        android:layout_height="500dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
 
-        tools:src="@drawable/hp0"
-        />
+        tools:context=".view.BookDetailsActivity">
 
-    <TextView
-        android:id="@+id/titreDetails"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/coverDetails"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="5dp"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        <androidx.constraintlayout.widget.ConstraintLayout
 
-        tools:text="Harry Potter et le Prisonnier d'Azkaban"
-        />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingHorizontal="20dp">
 
-    <TextView
-        android:id="@+id/priceDetails"
+            <ImageView
+                android:id="@+id/coverDetails"
+                android:layout_width="170dp"
+                android:layout_height="250dp"
+                android:contentDescription="Cover"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/hp0" />
+
+            <TextView
+                android:id="@+id/titreDetails"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/coverDetails"
+
+                tools:text="Harry Potter et le Prisonnier d'Azkaban" />
+
+            <com.example.henripotier.components.WrapContentViewPager
+                android:id="@+id/viewpager_main"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintTop_toBottomOf="@id/titreDetails"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.example.henripotier.components.WrapContentViewPager>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_go_to_checkout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/titreDetails"
+        android:layout_alignParentBottom="true"
+        android:descendantFocusability="beforeDescendants"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="5dp"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll_view"
+        app:layout_constraintVertical_bias="1.0"
 
-        tools:text="35 €"
-        />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@id/titreDetails" />
+        android:text="@string/add_to_cart"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

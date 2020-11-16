@@ -1,6 +1,7 @@
 package com.example.henripotier.contract
 
 import com.example.henripotier.model.Book
+import java.util.ArrayList
 
 interface BookDetailsContract {
 
@@ -13,7 +14,7 @@ interface BookDetailsContract {
         fun getTitle() : String
         fun getPrice() : String
         fun getCover() : String
-        fun getSynopsis() : List<String>
+        fun getSynopsis() : String
         fun getIsbn() : String
     }
 
@@ -21,7 +22,7 @@ interface BookDetailsContract {
         fun getTitle() : String
         fun getPrice() : String
         fun getCover() : String
-        fun getSynopsis() : List<String>
+        fun getSynopsis() : ArrayList<String>?
         fun getIsbn() : String
         fun setBook(book : Book)
     }

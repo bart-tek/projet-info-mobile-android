@@ -4,4 +4,5 @@
     <string name="action_cart">Cart</string>
     <string name="cover">Cover</string>
     <string name="bookPrice">%1$s €</string>
+    <string name="buyButton">BUY</string>
 </resources>

@@ -14,4 +14,8 @@
     <string name="priceLabel">Price : </string>
     <string name="isbnLabel">ISBN : </string>
     <string name="add_to_cart">Add to cart</string>
+    <string name="zero_euro">0 €</string>
+    <string name="discount_label">Discount:</string>
+    <string name="total_label">Total:</string>
+    <string name="to_pay_label">To pay:</string>
 </resources>

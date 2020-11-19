@@ -1,7 +1,5 @@
 package com.example.henripotier.presenter
 
-import com.example.henripotier.api.LibraryService
-import com.example.henripotier.api.RetrofitBuilder
 import com.example.henripotier.api.RetrofitBuilder.apiService
 import com.example.henripotier.contract.LibraryContractInterface.*
 import com.example.henripotier.model.Book
@@ -9,8 +7,6 @@ import com.example.henripotier.model.LibraryActivityModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
 class LibraryActivityPresenter(_view: View): Presenter {

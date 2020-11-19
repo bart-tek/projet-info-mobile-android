@@ -5,9 +5,13 @@
     <string name="action_cart">Cart</string>
     <string name="cover">Cover</string>
     <string name="bookPrice">%1$s €</string>
-
     <string name="cartItemQuantity">Qty: %1$s</string>
     <string name="cartItemPrice">Price: %1$s €</string>
     <string name="cartItemTotal">%1$s €</string>
     <string name="cartBuyButton">BUY</string>
+    <string name="buyButton">BUY</string>
+    <string name="synopsisTab">Synopsis</string>
+    <string name="priceLabel">Price : </string>
+    <string name="isbnLabel">ISBN : </string>
+    <string name="add_to_cart">Add to cart</string>
 </resources>

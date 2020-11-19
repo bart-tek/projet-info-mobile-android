@@ -1,10 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      tools:context=".Library">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.BookDetailsActivity">
 
     <item
-        android:id="@+id/action_cart_from_library"
+        android:id="@+id/action_cart_from_details"
         android:icon="@drawable/ic_outline_shopping_cart_24"
         android:title="@string/action_cart"
         app:showAsAction="ifRoom"/>

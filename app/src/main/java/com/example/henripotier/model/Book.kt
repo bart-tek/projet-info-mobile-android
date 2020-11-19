@@ -2,13 +2,14 @@ package com.example.henripotier.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.util.ArrayList
 
 data class Book(
     val isbn: String?,
     val title: String?,
     val price: String?,
     val cover: String?,
-    val synopsis: List<String>
+    val synopsis: ArrayList<String>?
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -16,10 +17,7 @@ data class Book(
         title = parcel.readString(),
         price = parcel.readString(),
         cover = parcel.readString(),
-        synopsis = emptyList()) {
-        if (synopsis.isNotEmpty()) {
-            parcel.readStringList(synopsis)
-        }
+        synopsis = parcel.createStringArrayList()) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

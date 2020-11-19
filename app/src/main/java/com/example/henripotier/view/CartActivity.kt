@@ -1,5 +1,6 @@
 package com.example.henripotier.view
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -22,8 +23,9 @@ class CartActivity : AppCompatActivity(), CartContractInterface.View {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
-        presenter = CartActivityPresenter(this)
+        presenter = CartActivityPresenter(this, context = applicationContext)
         updateViewData()
+
     }
 
 

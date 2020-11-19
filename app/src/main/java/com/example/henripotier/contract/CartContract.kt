@@ -22,7 +22,7 @@ interface CartContractInterface {
         fun getCart(): HashMap<Book, Int>
         fun removeBook(book: Book)
         fun addBook(book: Book)
-        fun flushCart()
+        fun setCart(cart:HashMap<Book, Int>)
     }
 
 }

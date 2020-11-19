@@ -13,8 +13,9 @@ class SynopsisTabFragment(private val presenter: BookDetailsActivityPresenter) :
 
     private var synopsisText: TextView? = null
 
+
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.synopsis_fragment, container, false)
+        val view = inflater.inflate(R.layout.synopsis_tab_fragment, container, false)
 
         synopsisText = view.findViewById(R.id.synopsisText)
         synopsisText?.text = presenter.getSynopsis()

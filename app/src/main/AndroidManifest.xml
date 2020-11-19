@@ -7,31 +7,27 @@
 
     <application
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HenriPotier">
-        <activity android:name=".view.LibraryActivity">
+        android:theme="@style/Theme.HenriPotier"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".view.MainActivity"
+        android:configChanges="orientation|screenSize|screenLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".view.CartActivity"
-            android:label="@string/cart_activity_name" >
+            android:configChanges="orientation|screenSize|screenLayout"
+            android:label="@string/cart_activity_name">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.LibraryActivity" />
-        </activity>
-        <activity
-            android:name=".view.BookDetailsActivity"
-            android:label="@string/bookDetails_activity_name" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.LibraryActivity" />
+                android:value=".view.MainActivity" />
         </activity>
     </application>
 

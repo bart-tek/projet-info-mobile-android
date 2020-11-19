@@ -32,6 +32,7 @@ class CartItemView @JvmOverloads constructor(
         nameTextView.text = book.title
         quantityTextView.text = String.format(resources.getString(R.string.cartItemQuantity),  quantity)
         priceTextView.text = String.format(resources.getString(R.string.cartItemPrice),  book.price)
-        totalTextView.text = String.format(resources.getString(R.string.cartItemTotal),  book.price!!.toInt()*quantity)
+        totalTextView.text = String.format(resources.getString(R.string.cartItemTotal),  (book.price?.toInt()
+            ?: 0) *quantity)
     }
 }

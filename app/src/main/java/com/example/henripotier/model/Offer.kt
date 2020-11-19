@@ -5,16 +5,16 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Offer(
-    val type: String?,
-    val value: Int?,
-    val sliceValue: Int?
+    val type: String,
+    val value: Int,
+    val sliceValue: Int
 ) : Parcelable {
 
     fun calculateDiscount(total: Double): Double {
         return when (type) {
-            "percentage" -> total * ((100.0 - value!!.toDouble()) / 100.0)
-            "minus" -> total - value!!
-            "slice" -> total - (total / sliceValue!!).toInt() * value!!
+            "percentage" -> total * ((100.0 - value.toDouble()) / 100.0)
+            "minus" -> total - value
+            "slice" -> total - (total / sliceValue).toInt() * value
             else -> total
         }
     }
@@ -33,7 +33,7 @@ data class Offer(
             if (offers != null) {
                 return offers.minByOrNull { offer -> offer.calculateDiscount(total = total) }
             } else {
-                return Offer(null, null, null)
+                return Offer("minus", 0, 0)
             }
 
         }

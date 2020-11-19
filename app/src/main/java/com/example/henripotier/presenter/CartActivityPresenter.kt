@@ -38,7 +38,7 @@ class CartActivityPresenter(_view: View, context: Context) : Presenter {
         val booksRequest = apiService.getDiscounts(isbns = isbns.joinToString(","))
 
         for ((book, amount) in model.getCart()) {
-            total += book.price!!.toInt() * amount
+            total += (book.price?.toInt() ?: 0) * amount
         }
 
         booksRequest.enqueue(object : Callback<OfferList> {

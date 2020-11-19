@@ -36,5 +36,9 @@ class CartActivityPresenter(_view: View): Presenter {
         return total
     }
 
+    override fun flushCart() {
+        TODO("Not yet implemented")
+    }
+
 
 }

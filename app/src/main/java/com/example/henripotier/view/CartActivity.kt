@@ -1,19 +1,18 @@
 package com.example.henripotier.view
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import android.widget.ListView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isNotEmpty
 import com.example.henripotier.R
 import com.example.henripotier.contract.CartContractInterface
 import com.example.henripotier.presenter.CartActivityPresenter
-import com.example.henripotier.presenter.CartAdapter
 
 
 class CartActivity : AppCompatActivity(), CartContractInterface.View {
@@ -51,18 +50,28 @@ class CartActivity : AppCompatActivity(), CartContractInterface.View {
     override fun initView() {
     }
 
-
     override fun updateViewData() {
-        val listView = findViewById<ListView>(R.id.cartItemListView)
-        listView.adapter = CartAdapter(this, presenter.getCart())
+        val linearLayout = findViewById<LinearLayout>(R.id.cartItemListView)
 
-        val emptyText = findViewById<View>(R.id.emptyCartView) as TextView
-        listView.emptyView = emptyText
+        val items = presenter.getCart()
+        val inflater = LayoutInflater.from(this)
+        if (items.isNotEmpty()) {
+            for (item in items) {
+                var view = inflater.inflate(R.layout.custom_view_item_cart, linearLayout, false)
 
-        val totalTextView =findViewById<TextView>(R.id.total)
-        totalTextView.text = String.format(resources.getString(R.string.bookPrice), presenter.getTotal())
+                (view as CartItemView).bindView(item.key, item.value)
+                linearLayout.addView(view)
+            }
 
-        if(presenter.getCart().isNotEmpty()){
+        } else {
+            val emptyText = inflater.inflate(R.layout.empty_cart_view, linearLayout, false)
+            linearLayout.addView(emptyText)
+        }
+        val totalTextView = findViewById<TextView>(R.id.total)
+        totalTextView.text =
+            String.format(resources.getString(R.string.bookPrice), presenter.getTotal())
+
+        if (presenter.getCart().isNotEmpty()) {
             val buyButton = findViewById<Button>(R.id.buyButton)
             buyButton.isEnabled = true
         }

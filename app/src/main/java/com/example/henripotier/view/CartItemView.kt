@@ -28,10 +28,10 @@ class CartItemView @JvmOverloads constructor(
         priceTextView = findViewById(R.id.itemPrice)
     }
 
-    fun bindView(book: Book, amount:Int) {
+    fun bindView(book: Book, quantity:Int) {
         nameTextView.text = book.title
-        quantityTextView.text = String.format(resources.getString(R.string.cartItemQuantity),  book.price)
+        quantityTextView.text = String.format(resources.getString(R.string.cartItemQuantity),  quantity)
         priceTextView.text = String.format(resources.getString(R.string.cartItemPrice),  book.price)
-        totalTextView.text = String.format(resources.getString(R.string.cartItemTotal),  book.price!!.toInt()*amount)
+        totalTextView.text = String.format(resources.getString(R.string.cartItemTotal),  book.price!!.toInt()*quantity)
     }
 }

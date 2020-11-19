@@ -14,12 +14,14 @@ interface CartContractInterface {
         fun removeBook(book: Book)
         fun addBook(book:Book)
         fun getTotal(): Double
+        fun flushCart()
     }
 
     interface Model {
         fun getCart() : HashMap<Book, Int>
         fun removeBook(book: Book)
         fun addBook(book:Book)
+        fun flushCart()
     }
 
 }

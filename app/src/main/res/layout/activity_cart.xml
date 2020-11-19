@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.CartActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="right"
-    android:orientation="vertical"
-    tools:context=".view.CartActivity">
+    android:orientation="vertical">
 
-    <ListView
+    <LinearLayout
         android:id="@+id/cartItemListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
-
-    <TextView android:id="@+id/emptyCartView"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:textAlignment="center"
-        android:text="Your cart is empty.\nStart by adding some books to your cart."
-        android:textSize="18sp"
-        xmlns:android="http://schemas.android.com/apk/res/android" />
+        android:orientation="vertical">
+    </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -66,3 +62,4 @@
         android:text="@string/cartBuyButton" />
 
 </LinearLayout>
+</ScrollView>

@@ -16,6 +16,7 @@ interface BookDetailsContract {
         fun getCover() : String
         fun getSynopsis() : String
         fun getIsbn() : String
+        fun getBook() : Book
     }
 
     interface Model {
@@ -24,6 +25,7 @@ interface BookDetailsContract {
         fun getCover() : String
         fun getSynopsis() : ArrayList<String>?
         fun getIsbn() : String
+        fun getBook() : Book
         fun setBook(book : Book)
     }
 

@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.henripotier.model.Book
 import com.google.gson.Gson
+import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
+import org.json.JSONObject
+import org.json.JSONStringer
 
 private var PRIVATE_MODE = 0
 private const val PREF_NAME = "henripotiercart"
@@ -24,7 +27,7 @@ class CartService {
         val sharedPref: SharedPreferences = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
         val cartJson = sharedPref.getString("cart", "")
         val type = object : TypeToken<HashMap<Book, Int>>() {}.type
-        return  Gson().fromJson(cartJson, type)
+        return let { Gson().fromJson(cartJson, type)?: HashMap() };
     }
 
     fun addBook(context: Context, book: Book){

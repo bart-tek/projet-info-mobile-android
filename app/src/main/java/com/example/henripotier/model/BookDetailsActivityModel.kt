@@ -27,6 +27,10 @@ class BookDetailsActivityModel: BookDetailsContract.Model {
         return book.synopsis
     }
 
+    override fun getBook() : Book {
+        return book
+    }
+
     override fun setBook(book : Book) {
         this.book = book
     }

@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.henripotier.R
+import com.example.henripotier.api.CartService
 import com.example.henripotier.components.WrapContentViewPager
 import com.example.henripotier.contract.BookDetailsContract
 import com.example.henripotier.presenter.BookDetailsActivityPresenter
@@ -19,6 +21,7 @@ import com.squareup.picasso.Picasso
 class BookDetailsFragment : Fragment(), BookDetailsContract.View {
 
     private lateinit var presenter: BookDetailsActivityPresenter
+    private val cartService = CartService()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +58,11 @@ class BookDetailsFragment : Fragment(), BookDetailsContract.View {
         val tabLayout = view?.findViewById<TabLayout>(R.id.tabs_main)
         viewPager?.adapter = fragmentAdapter
         tabLayout?.setupWithViewPager(viewPager);
+
+        val addToCartButton = view?.findViewById<Button>(R.id.add_to_cart)
+        addToCartButton?.setOnClickListener {
+            activity?.baseContext?.let { it1 -> cartService.addBook(it1, presenter.getBook()) }
+        }
     }
 
     override fun updateViewData() {

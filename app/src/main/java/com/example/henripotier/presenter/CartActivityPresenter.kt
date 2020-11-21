@@ -42,7 +42,7 @@ class CartActivityPresenter(_view: View, context: Context) : Presenter {
                 if (allBooks != null) {
                     bookList = allBooks.map { b  -> b.isbn!! to b }.toMap()
                 }
-                initTotal()
+                calculateTotal()
             }
 
             override fun onFailure(call: Call<List<Book>>, t: Throwable) {
@@ -55,7 +55,7 @@ class CartActivityPresenter(_view: View, context: Context) : Presenter {
        return model.getCart().map { (isbn, amount) -> bookList?.get(isbn) to amount}.toMap()
     }
 
-    private fun initTotal() {
+    private fun calculateTotal() {
         val cart = model.getCart()
         val booksRequest = apiService.getDiscounts(isbns =  cart.keys.joinToString(","))
 
@@ -93,8 +93,10 @@ class CartActivityPresenter(_view: View, context: Context) : Presenter {
 
 
     override fun flushCart(context: Context) {
-        cartService.retrieveCart(context)
+        cartService.updateCart(context, HashMap())
         model.setCart(HashMap())
+        calculateTotal()
+        view.updateViewData()
     }
 
 

@@ -1,6 +1,5 @@
 package com.example.henripotier.view
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -8,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.henripotier.R
@@ -26,6 +26,12 @@ class CartActivity : AppCompatActivity(), CartContractInterface.View {
         presenter = CartActivityPresenter(this, context = applicationContext)
         updateViewData()
 
+
+        val addToCartButton = findViewById<Button>(R.id.buy_button)
+        addToCartButton?.setOnClickListener {
+            presenter.flushCart(applicationContext)
+            Toast.makeText(applicationContext, "Thanks for shopping with us !", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
@@ -94,7 +100,7 @@ class CartActivity : AppCompatActivity(), CartContractInterface.View {
         toPayTextView.text = String.format(resources.getString(R.string.bookPrice), toPay)
 
         if (presenter.getCart().isNotEmpty()) {
-            val buyButton = findViewById<Button>(R.id.buyButton)
+            val buyButton = findViewById<Button>(R.id.buy_button)
             buyButton.isEnabled = true
         }
     }

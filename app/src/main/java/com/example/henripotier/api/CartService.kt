@@ -14,7 +14,7 @@ private const val PREF_NAME = "henripotiercart"
 
 class CartService {
 
-    private fun updateCart(context: Context, cart: HashMap<String, Int>){
+     fun updateCart(context: Context, cart: HashMap<String, Int>){
         val sharedPref: SharedPreferences = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
         with(sharedPref.edit()){
             val json = Gson().toJson(cart)

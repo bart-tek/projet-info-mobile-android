@@ -68,7 +68,7 @@ class CartActivity : AppCompatActivity(), CartContractInterface.View {
             // Add each element to linear layout
             for (item in items) {
                 var view = inflater.inflate(R.layout.custom_view_item_cart, linearLayout, false)
-                (view as CartItemView).bindView(item.key, item.value)
+                item.key?.let { (view as CartItemView).bindView(it, item.value) }
                 linearLayout.addView(view)
             }
         } else {

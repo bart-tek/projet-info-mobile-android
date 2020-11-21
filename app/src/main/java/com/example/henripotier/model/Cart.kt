@@ -4,13 +4,13 @@ import com.example.henripotier.contract.CartContractInterface.Model
 
 
 class Cart: Model {
-    private var cart: HashMap<Book, Int> = hashMapOf()
+    private var cart: HashMap<String, Int> = hashMapOf()
 
-    override fun getCart(): HashMap<Book, Int> {
+    override fun getCart(): HashMap<String, Int> {
         return cart
     }
 
-    override fun removeBook(book: Book) {
+    override fun removeBook(book: String) {
         if (cart.containsKey(book)) {
             cart[book] = cart[book]!!.minus(1)
             if (cart[book]!! <= 0) {
@@ -19,13 +19,13 @@ class Cart: Model {
         }
     }
 
-    override fun addBook(book: Book) {
+    override fun addBook(book: String) {
         if (cart.containsKey(book)) {
             cart[book] = cart[book]!!.plus(1)
         }
     }
 
-    override fun setCart(cart:HashMap<Book, Int>){
+    override fun setCart(cart:HashMap<String, Int>){
         this.cart = cart
     }
 

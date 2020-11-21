@@ -21,24 +21,46 @@ class CartActivityPresenter(_view: View, context: Context) : Presenter {
     private var cartService: CartService = CartService()
     private var total: Double = 0.0
     private var discount: Offer? = null
+    private var bookList : Map<String, Book>? = null
 
     init {
         view.initView()
         model.setCart(cartService.retrieveCart(context = context))
-        initTotal()
+        initBookList()
     }
 
-    override fun getCart(): HashMap<Book, Int> {
-        return model.getCart()
+
+    private fun initBookList() {
+
+        Timber.plant(Timber.DebugTree())
+
+        val booksRequest = apiService.listBooks()
+
+        booksRequest.enqueue(object : Callback<List<Book>> {
+            override fun onResponse(call: Call<List<Book>>, response: Response<List<Book>>) {
+                val allBooks = response.body()
+                if (allBooks != null) {
+                    bookList = allBooks.map { b  -> b.isbn!! to b }.toMap()
+                }
+                initTotal()
+            }
+
+            override fun onFailure(call: Call<List<Book>>, t: Throwable) {
+                Timber.e(t)
+            }
+        })
+    }
+
+    override fun getCart(): Map<Book?, Int> {
+       return model.getCart().map { (isbn, amount) -> bookList?.get(isbn) to amount}.toMap()
     }
 
     private fun initTotal() {
         val cart = model.getCart()
-        val isbns = cart.keys.map { b -> b.isbn }
-        val booksRequest = apiService.getDiscounts(isbns = isbns.joinToString(","))
+        val booksRequest = apiService.getDiscounts(isbns =  cart.keys.joinToString(","))
 
-        for ((book, amount) in model.getCart()) {
-            total += (book.price?.toInt() ?: 0) * amount
+        for ((isbn, amount) in model.getCart()) {
+            total += (bookList?.get(isbn)?.price?.toInt() ?: 0)*amount
         }
 
         booksRequest.enqueue(object : Callback<OfferList> {
@@ -54,13 +76,14 @@ class CartActivityPresenter(_view: View, context: Context) : Presenter {
         })
     }
 
-    override fun removeBook(book: Book) {
-        model.removeBook(book)
+    override fun removeBook(book: Book,context: Context) {
+        model.removeBook(book.isbn!!)
         view.updateViewData()
     }
 
-    override fun addBook(book: Book) {
-        model.addBook(book)
+    override fun addBook(book: Book, context: Context) {
+        model.addBook(book.isbn!!)
+        cartService.addBook(context, book)
         view.updateViewData()
     }
 
@@ -69,8 +92,9 @@ class CartActivityPresenter(_view: View, context: Context) : Presenter {
     }
 
 
-    override fun flushCart() {
-        TODO("Not yet implemented")
+    override fun flushCart(context: Context) {
+        cartService.retrieveCart(context)
+        model.setCart(HashMap())
     }
 
 
